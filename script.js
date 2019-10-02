@@ -63,3 +63,14 @@ let hit = function(el) {
     card.className = 'card'
     el.appendChild(card)
 }
+
+// I found this function; I did not come up with this shuffle method.
+let shuffle = function() {
+    for(let i = 0; i < 1000; i++) {
+        let card1 = Math.floor((Math.random() * deck.length))
+        let card2 = Math.floor((Math.random() * deck.length))
+        let holdVal = deck[card1]
+        deck[card1] = deck[card2]
+        deck[card2] = holdVal
+    }
+}
