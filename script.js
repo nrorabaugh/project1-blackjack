@@ -56,3 +56,10 @@ let deck = [
 let dealerHand = document.getElementsByClassName('dealerHand')[0]
 let playerHand = document.getElementsByClassName('playerHand')[0]
 
+let hit = function(el) {
+    let draw = deck.shift()
+    let card = document.createElement('img')
+    card.setAttribute('src', draw.img)
+    card.className = 'card'
+    el.appendChild(card)
+}
