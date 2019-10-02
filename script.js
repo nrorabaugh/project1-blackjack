@@ -52,3 +52,4 @@ let deck = [
     {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
     {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'}
 ]
+
