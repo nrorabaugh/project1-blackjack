@@ -53,3 +53,6 @@ let deck = [
     {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'}
 ]
 
+let dealerHand = document.getElementsByClassName('dealerHand')[0]
+let playerHand = document.getElementsByClassName('playerHand')[0]
+
