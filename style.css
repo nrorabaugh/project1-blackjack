@@ -51,6 +51,14 @@ h2 {
     width: 80%;
     margin: 0 auto
 }
+h4 {
+    padding: 0;
+    margin: 0 40px;
+    font-family: Helvetica;
+    color: goldenrod;
+    position: absolute;
+    bottom: 0
+}
 .card {
     height: 100%;
     margin: 0 20px
