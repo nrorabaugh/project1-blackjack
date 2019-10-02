@@ -64,6 +64,12 @@ h4 {
     margin: 0 20px
 }
 .deck {
-    box-shadow: 4px 1px 12px 0 rgba(0, 0, 0, 0.7);
- 
+    box-shadow: 4px 1px 12px 0 rgba(0, 0, 0, 0.7); 
+}
+.buttons {
+    position: absolute;
+    right: 100px;
+}
+button {
+    font-size: 22px
 }
