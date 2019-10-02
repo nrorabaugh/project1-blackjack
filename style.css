@@ -29,10 +29,22 @@ h1 {
     display: flex;
     flex-direction: row-reverse;
 }
+h2 {
+    font-family: Helvetica;
+    color: goldenrod
+}
+.dealerName {
+    text-align: right;
+    padding: 0 400px 20px 10px;
+    margin: 0;
+}
 .playerSide {
     height: 230px;
     margin: 0 0 40px 0;
     position: relative;
+}
+.playerName {
+    margin: 0 0 20px 200px;
 }
 .playerHand {
     height: 150px;
