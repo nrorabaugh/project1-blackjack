@@ -106,6 +106,9 @@ let check = function() {
 let dealCard = function(el) {
     let draw = deck.shift()
     el.hand.push(draw)
+    if(el.points > 10 && draw.val === 11){
+        draw.val = 1
+    }
     el.points += draw.val 
     points.textContent = player.points
     let card = document.createElement('img')
@@ -140,7 +143,9 @@ let stand = function() {
         standoff()
         return
     }
-    dealerHit()
+    while(dealer.points <= 16){
+        dealerHit()
+    }
 }
 
 let points = document.getElementsByClassName('points')[0]
