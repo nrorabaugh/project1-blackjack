@@ -1,4 +1,5 @@
 let deck = [
+    
     {rank: 2, suit: 'Clubs', val: 2, img: 'cards/2C.jpg'},
     {rank: 3, suit: 'Clubs', val: 3, img: 'cards/3C.jpg'},
     {rank: 4, suit: 'Clubs', val: 4, img: 'cards/4C.jpg'},
@@ -69,6 +70,7 @@ let player = {
 let log = document.getElementsByClassName('log')[0]
 
 let standoff = function() {
+    flip()
     if(dealer.points > player.points) {
         log.innerHTML = 'Dealer wins...'
     }
@@ -103,13 +105,25 @@ let check = function() {
     }
 }
 
-let dealCard = function(el) {
-    let draw = deck.shift()
-    el.hand.push(draw)
+let whatAceVal = async function() {
     if(el.points > 10 && draw.val === 11){
         draw.val = 1
     }
+}
+
+let dealCard = function(el) {
+    let draw = deck.shift()
+    el.hand.push(draw)
     el.points += draw.val 
+    if(el.points > 21) {
+        el.points = 0
+        for(let i = 0; i < el.hand.length; i++){
+            if(el.points > 10 && el.hand[i].val === 11){
+                el.hand[i].val = 1
+            }
+            el.points += el.hand[i].val
+        }
+    }
     points.textContent = player.points
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
@@ -146,6 +160,7 @@ let stand = function() {
     while(dealer.points <= 16){
         dealerHit()
     }
+    standoff()
 }
 
 let points = document.getElementsByClassName('points')[0]
@@ -201,15 +216,15 @@ let dealButton = document.getElementsByClassName('deal')[0]
 
 let deal = function() {
     clear()
-    shuffle()
+    //shuffle()
     dealButton.innerHTML = 'Redeal'
+    dealCard(player)
     dealCard(dealer)
     let upsideDown = dealer.seat.getElementsByClassName('card')[1]
     dealer.hidden = upsideDown.getAttribute('src')
     upsideDown.setAttribute('src', 'cards/Red_back.jpg')
     dealCard(player)
     dealCard(dealer)
-    dealCard(player)
     check()
 }
 
