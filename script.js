@@ -1,5 +1,4 @@
 let deck = [
-    
     {rank: 2, suit: 'Clubs', val: 2, img: 'cards/2C.jpg'},
     {rank: 3, suit: 'Clubs', val: 3, img: 'cards/3C.jpg'},
     {rank: 4, suit: 'Clubs', val: 4, img: 'cards/4C.jpg'},
@@ -12,7 +11,7 @@ let deck = [
     {rank: 'Jack', suit: 'Clubs', val: 10, img: 'cards/JC.jpg'},
     {rank: 'Queen', suit: 'Clubs', val: 10, img: 'cards/QC.jpg'},
     {rank: 'King', suit: 'Clubs', val: 10, img: 'cards/KC.jpg'},
-    {rank: 'Ace', suit: 'Clubs', val: 11, img: 'cards/AC.jpg'},
+    {rank: 'Ace', suit: 'Clubs', val: 11, loVal: 1, img: 'cards/AC.jpg'},
     {rank: 2, suit: 'Hearts', val: 2, img: 'cards/2H.jpg'},
     {rank: 3, suit: 'Hearts', val: 3, img: 'cards/3H.jpg'},
     {rank: 4, suit: 'Hearts', val: 4, img: 'cards/4H.jpg'},
@@ -25,7 +24,7 @@ let deck = [
     {rank: 'Jack', suit: 'Hearts', val: 10, img: 'cards/JH.jpg'},
     {rank: 'Queen', suit: 'Hearts', val: 10, img: 'cards/QH.jpg'},
     {rank: 'King', suit: 'Hearts', val: 10, img: 'cards/KH.jpg'},
-    {rank: 'Ace', suit: 'Hearts', val: 11, img: 'cards/AH.jpg'},
+    {rank: 'Ace', suit: 'Hearts', val: 11, loVal: 1, img: 'cards/AH.jpg'},
     {rank: 2, suit: 'Diamonds', val: 2, img: 'cards/2D.jpg'},
     {rank: 3, suit: 'Diamonds', val: 3, img: 'cards/3D.jpg'},
     {rank: 4, suit: 'Diamonds', val: 4, img: 'cards/4D.jpg'},
@@ -38,7 +37,7 @@ let deck = [
     {rank: 'Jack', suit: 'Diamonds', val: 10, img: 'cards/JD.jpg'},
     {rank: 'Queen', suit: 'Diamonds', val: 10, img: 'cards/QD.jpg'},
     {rank: 'King', suit: 'Diamonds', val: 10, img: 'cards/KD.jpg'},
-    {rank: 'Ace', suit: 'Diamonds', val: 11, img: 'cards/AD.jpg'},
+    {rank: 'Ace', suit: 'Diamonds', val: 11, loVal: 1, img: 'cards/AD.jpg'},
     {rank: 2, suit: 'Spades', val: 2, img: 'cards/2S.jpg'},
     {rank: 3, suit: 'Spades', val: 3, img: 'cards/3S.jpg'},
     {rank: 4, suit: 'Spades', val: 4, img: 'cards/4S.jpg'},
@@ -51,20 +50,22 @@ let deck = [
     {rank: 'Jack', suit: 'Spades', val: 10, img: 'cards/JS.jpg'},
     {rank: 'Queen', suit: 'Spades', val: 10, img: 'cards/QS.jpg'},
     {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
-    {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'}
+    {rank: 'Ace', suit: 'Spades', val: 11, loVal: 1, img: 'cards/AS.jpg'}
 ]
 
 let dealer = {
     seat: document.getElementsByClassName('dealerHand')[0],
     hand: [],
     points: 0,
-    high: false
+    high: false,
+    aces: []
 }
 let player = {
     seat: document.getElementsByClassName('playerHand')[0],
     hand: [],
     points: 0,
-    high: false
+    high: false,
+    aces: []
 }
 
 let log = document.getElementsByClassName('log')[0]
@@ -83,19 +84,9 @@ let standoff = function() {
 }
 
 let check = function() {
-    if(dealer.points > 21) {
-        flip()
-        log.innerHTML = 'Dealer busted!'
-        return
-    }
-    if(dealer.points === 21){
-        flip()
-        log.innerHTML = 'Dealer wins...'
-        return
-    }
     if(player.points > 21) {
         flip()
-        log.innerHTML = 'You busted...'
+        log.innerHTML = 'You busted...</br>Dealer wins.'
         return
     }
     if(player.points === 21) {
@@ -103,28 +94,41 @@ let check = function() {
         log.innerHTML = 'You win!'
         return
     }
-}
-
-let whatAceVal = async function() {
-    if(el.points > 10 && draw.val === 11){
-        draw.val = 1
+    if(dealer.points > 21) {
+        flip()
+        log.innerHTML = 'Dealer busted!</br>You win!'
+        return
+    }
+    if(dealer.points === 21){
+        flip()
+        log.innerHTML = 'Dealer wins...'
+        return
     }
 }
+
+
 
 let dealCard = function(el) {
     let draw = deck.shift()
     el.hand.push(draw)
-    el.points += draw.val 
-    if(el.points > 21) {
-        el.points = 0
-        for(let i = 0; i < el.hand.length; i++){
-            if(el.points > 10 && el.hand[i].val === 11){
-                el.hand[i].val = 1
-            }
-            el.points += el.hand[i].val
+    if(draw.val < 11) {
+        el.points += draw.val
+    }
+    if(draw.val === 11) {
+        el.aces.push(draw)
+        if(el.points > 10){
+            el.points += draw.loVal
+        } else {
+            el.points += draw.val
         }
     }
-    points.textContent = player.points
+    for(let i = 0; i < el.aces.length; i++){
+        if(el.points > 21){
+            el.points -= 10
+            el.aces.shift()
+        }
+    }
+    points.innerHTML = player.points
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
     card.className = 'card'
@@ -200,7 +204,7 @@ let clear = function() {
     }
     for(let i = 0; i < player.hand.length; i++){
         deck.push(player.hand[i]) 
-     }
+    }
     player.hand = []
     dealer.hand = []
     player.points = 0
@@ -216,7 +220,7 @@ let dealButton = document.getElementsByClassName('deal')[0]
 
 let deal = function() {
     clear()
-    //shuffle()
+    shuffle()
     dealButton.innerHTML = 'Redeal'
     dealCard(player)
     dealCard(dealer)
