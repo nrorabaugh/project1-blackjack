@@ -65,27 +65,28 @@ let player = {
 }
 
 
-let hit = function() {
+let dealCard = function(el) {
     let draw = deck.shift()
-    player.hand.push(draw)
-    player.points += draw.val 
-    points.textContent = player.points
+    el.hand.push(draw)
+    el.points += draw.val 
+    points.textContent = el.points
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
     card.className = 'card'
-    player.seat.appendChild(card)
+    el.seat.appendChild(card)
+}
+let hit = function() {
+    dealCard(player)
+    dealerHit()
 }
 
 let points = document.getElementsByClassName('points')[0]
 
 let dealerHit = function() {
-    let draw = deck.shift()
-    dealer.hand.push(draw)
-    dealer.points += draw.val 
-    let card = document.createElement('img')
-    card.setAttribute('src', draw.img)
-    card.className = 'card'
-    dealer.seat.appendChild(card)
+    if(dealer.points > 16) {
+        return
+    }
+    dealCard(dealer)
 }
 
 let shuffle = function() {
@@ -110,16 +111,12 @@ let deal = function() {
     dealer.hand = []
     player.hand = []
     shuffle()
-    let draw = deck.shift()
-    dealer.hand.push(draw)
-    dealer.points += draw.val 
-    let card = document.createElement('img')
-    card.setAttribute('src', 'cards/Red_back.jpg')
-    card.className = 'card'
-    dealer.seat.appendChild(card)
-    hit()
-    dealerHit()
-    hit()
+    dealCard(dealer)
+    let upsideDown = dealer.seat.getElementsByClassName('card')[1]
+    upsideDown.setAttribute('src', 'cards/Red_back.jpg')
+    dealCard(player)
+    dealCard(dealer)
+    dealCard(player)
 }
 
 dealButton.addEventListener('click', deal)
