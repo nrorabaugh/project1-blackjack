@@ -53,18 +53,30 @@ let deck = [
     {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'}
 ]
 
-let dealerHand = document.getElementsByClassName('dealerHand')[0]
-let playerHand = document.getElementsByClassName('playerHand')[0]
+let dealer = {
+    seat: document.getElementsByClassName('dealerHand')[0],
+    points: 0 
+}
+let player = {
+    seat: document.getElementsByClassName('playerHand')[0],
+    points: 0
+}
 
-let hit = function(el) {
+
+let hit = function() {
     let draw = deck.shift()
+    player.points += draw.val 
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
     card.className = 'card'
-    el.appendChild(card)
+    player.seat.appendChild(card)
 }
 
-// I found this function; I did not come up with this shuffle method.
+
+
+// I found this function, I did not come up with this shuffle method. 
+// I didn't copy it down, either: I just looked it over and composed this later that day.
+
 let shuffle = function() {
     for(let i = 0; i < 1000; i++) {
         let card1 = Math.floor((Math.random() * deck.length))
@@ -74,3 +86,8 @@ let shuffle = function() {
         deck[card2] = holdVal
     }
 }
+
+shuffle()
+
+let hitButton = document.getElementsByClassName('hit')[0]
+hitButton.addEventListener('click', hit)
