@@ -84,6 +84,22 @@ let dealerHit = function() {
     dealer.seat.appendChild(card)
 }
 
+let dealButton = document.getElementsByClassName('deal')[0]
+
+let deal = function() {
+    let draw = deck.shift()
+    dealer.points += draw.val 
+    let card = document.createElement('img')
+    card.setAttribute('src', 'cards/Red_back.jpg')
+    card.className = 'card'
+    dealer.seat.appendChild(card)
+    hit()
+    dealerHit()
+    hit()
+    dealButton.innerHTML = 'Redeal'
+}
+
+dealButton.addEventListener('click', deal)
 
 // I found this function, I did not come up with this shuffle method. 
 // I didn't copy it down, either: I just looked it over and composed this later that day.
@@ -105,3 +121,4 @@ hitButton.addEventListener('click', hit)
 
 let standButton = document.getElementsByClassName('stand')[0]
 standButton.addEventListener('click', dealerHit)
+
