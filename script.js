@@ -56,27 +56,62 @@ let deck = [
 let dealer = {
     seat: document.getElementsByClassName('dealerHand')[0],
     hand: [],
-    points: 0 
+    points: 0,
+    high: false
 }
 let player = {
     seat: document.getElementsByClassName('playerHand')[0],
     hand: [],
-    points: 0
+    points: 0,
+    high: false
 }
-
+let check = function() {
+    if(dealer.points > 21) {
+        console.log('Dealer busted!')
+        return
+    }
+    if(dealer.points === 21){
+        console.log('Dealer wins...')
+        return
+    }
+    if(player.points > 21) {
+        console.log('You busted...')
+        return
+    }
+    if(player.points === 21) {
+        console.log('You win!')
+        return
+    }
+}
 
 let dealCard = function(el) {
     let draw = deck.shift()
     el.hand.push(draw)
     el.points += draw.val 
-    points.textContent = el.points
+    points.textContent = player.points
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
     card.className = 'card'
     el.seat.appendChild(card)
 }
+
 let hit = function() {
     dealCard(player)
+    check()
+    dealerHit()
+}
+
+let flip = function() {
+    let upsideDown = dealer.seat.getElementsByClassName('card')[1]
+    upsideDown.setAttribute('src', dealer.hidden)
+}
+
+let stand = function() {
+    player.high = true
+    if(dealer.high === true) {
+        flip()
+        return
+    }
     dealerHit()
 }
 
@@ -84,9 +119,11 @@ let points = document.getElementsByClassName('points')[0]
 
 let dealerHit = function() {
     if(dealer.points > 16) {
+        dealer.high = true
         return
     }
     dealCard(dealer)
+    check()
 }
 
 let shuffle = function() {
@@ -99,9 +136,7 @@ let shuffle = function() {
     }
 }
 
-let dealButton = document.getElementsByClassName('deal')[0]
-
-let deal = function() {
+let clear = function() {
     dealer.hand.forEach(function() {
         dealer.seat.removeChild(dealer.seat.lastChild)
     })
@@ -110,9 +145,18 @@ let deal = function() {
     })
     dealer.hand = []
     player.hand = []
+    player.points = 0
+    points.textContent = player.points
+}
+
+let dealButton = document.getElementsByClassName('deal')[0]
+
+let deal = function() {
+    clear()
     shuffle()
     dealCard(dealer)
     let upsideDown = dealer.seat.getElementsByClassName('card')[1]
+    dealer.hidden = upsideDown.getAttribute('src')
     upsideDown.setAttribute('src', 'cards/Red_back.jpg')
     dealCard(player)
     dealCard(dealer)
@@ -129,5 +173,5 @@ let hitButton = document.getElementsByClassName('hit')[0]
 hitButton.addEventListener('click', hit)
 
 let standButton = document.getElementsByClassName('stand')[0]
-standButton.addEventListener('click', dealerHit)
+standButton.addEventListener('click', stand)
 
