@@ -65,13 +65,15 @@ let player = {
 
 let hit = function() {
     let draw = deck.shift()
-    player.points += draw.val 
+    player.points = player.points + draw.val 
+    points.textContent = player.points
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
     card.className = 'card'
     player.seat.appendChild(card)
 }
 
+let points = document.getElementsByClassName('points')[0]
 
 
 // I found this function, I did not come up with this shuffle method. 
