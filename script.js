@@ -55,16 +55,19 @@ let deck = [
 
 let dealer = {
     seat: document.getElementsByClassName('dealerHand')[0],
+    hand: [],
     points: 0 
 }
 let player = {
     seat: document.getElementsByClassName('playerHand')[0],
+    hand: [],
     points: 0
 }
 
 
 let hit = function() {
     let draw = deck.shift()
+    player.hand.push(draw)
     player.points += draw.val 
     points.textContent = player.points
     let card = document.createElement('img')
@@ -77,32 +80,13 @@ let points = document.getElementsByClassName('points')[0]
 
 let dealerHit = function() {
     let draw = deck.shift()
+    dealer.hand.push(draw)
     dealer.points += draw.val 
     let card = document.createElement('img')
     card.setAttribute('src', draw.img)
     card.className = 'card'
     dealer.seat.appendChild(card)
 }
-
-let dealButton = document.getElementsByClassName('deal')[0]
-
-let deal = function() {
-    let draw = deck.shift()
-    dealer.points += draw.val 
-    let card = document.createElement('img')
-    card.setAttribute('src', 'cards/Red_back.jpg')
-    card.className = 'card'
-    dealer.seat.appendChild(card)
-    hit()
-    dealerHit()
-    hit()
-    dealButton.innerHTML = 'Redeal'
-}
-
-dealButton.addEventListener('click', deal)
-
-// I found this function, I did not come up with this shuffle method. 
-// I didn't copy it down, either: I just looked it over and composed this later that day.
 
 let shuffle = function() {
     for(let i = 0; i < 1000; i++) {
@@ -114,7 +98,35 @@ let shuffle = function() {
     }
 }
 
-shuffle()
+let dealButton = document.getElementsByClassName('deal')[0]
+
+let deal = function() {
+    dealer.hand.forEach(function() {
+        dealer.seat.removeChild(dealer.seat.lastChild)
+    })
+    dealer.hand.forEach(function() {
+        player.seat.removeChild(player.seat.lastChild)
+    })
+    dealer.hand = []
+    player.hand = []
+    shuffle()
+    let draw = deck.shift()
+    dealer.hand.push(draw)
+    dealer.points += draw.val 
+    let card = document.createElement('img')
+    card.setAttribute('src', 'cards/Red_back.jpg')
+    card.className = 'card'
+    dealer.seat.appendChild(card)
+    hit()
+    dealerHit()
+    hit()
+}
+
+dealButton.addEventListener('click', deal)
+
+// I found this function, I did not come up with this shuffle method. 
+// I didn't copy it down, either: I just looked it over and composed this later that day.
+
 
 let hitButton = document.getElementsByClassName('hit')[0]
 hitButton.addEventListener('click', hit)
