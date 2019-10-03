@@ -69,8 +69,18 @@ h4 {
 }
 .buttons {
     position: absolute;
-    right: 100px;
+    right: 45%;
+    bottom: 0
 }
 button {
     font-size: 22px;
+}
+.log {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 100px;
+    font-family: Helvetica;
+    color: goldenrod;
+    font-size: 22px
 }

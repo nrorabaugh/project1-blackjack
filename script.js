@@ -65,21 +65,40 @@ let player = {
     points: 0,
     high: false
 }
+
+let log = document.getElementsByClassName('log')[0]
+
+let standoff = function() {
+    if(dealer.points > player.points) {
+        log.innerHTML = 'Dealer wins...'
+    }
+    if(dealer.points < player.points) {
+        log.innerHTML = 'You win!'
+    }
+    if(dealer.points === player.points) {
+        log.innerHTML = 'Wow...a tie!'
+    }
+}
+
 let check = function() {
     if(dealer.points > 21) {
-        console.log('Dealer busted!')
+        flip()
+        log.innerHTML = 'Dealer busted!'
         return
     }
     if(dealer.points === 21){
-        console.log('Dealer wins...')
+        flip()
+        log.innerHTML = 'Dealer wins...'
         return
     }
     if(player.points > 21) {
-        console.log('You busted...')
+        flip()
+        log.innerHTML = 'You busted...'
         return
     }
     if(player.points === 21) {
-        console.log('You win!')
+        flip()
+        log.innerHTML = 'You win!'
         return
     }
 }
@@ -96,6 +115,10 @@ let dealCard = function(el) {
 }
 
 let hit = function() {
+    if(log.innerHTML !== ''){
+        log.innerHTML = 'You have to deal first!'
+        return
+    }
     dealCard(player)
     check()
     dealerHit()
@@ -107,9 +130,14 @@ let flip = function() {
 }
 
 let stand = function() {
+    if(log.innerHTML !== ''){
+        log.innerHTML = 'You have to deal first!'
+        return
+    }
     player.high = true
     if(dealer.high === true) {
         flip()
+        standoff()
         return
     }
     dealerHit()
@@ -120,6 +148,10 @@ let points = document.getElementsByClassName('points')[0]
 let dealerHit = function() {
     if(dealer.points > 16) {
         dealer.high = true
+        if(player.high === true){
+            flip()
+            standoff()
+        }
         return
     }
     dealCard(dealer)
@@ -137,16 +169,27 @@ let shuffle = function() {
 }
 
 let clear = function() {
-    dealer.hand.forEach(function() {
+    for(let i = 0; i < dealer.hand.length; i++) {
         dealer.seat.removeChild(dealer.seat.lastChild)
-    })
-    dealer.hand.forEach(function() {
+    }
+    for(let i = 0; i < player.hand.length; i++)  {
         player.seat.removeChild(player.seat.lastChild)
-    })
-    dealer.hand = []
+    }
+    for(let i = 0; i < dealer.hand.length; i++){
+       deck.push(dealer.hand[i])
+    }
+    for(let i = 0; i < player.hand.length; i++){
+        deck.push(player.hand[i]) 
+     }
     player.hand = []
+    dealer.hand = []
     player.points = 0
+    dealer.points = 0
     points.textContent = player.points
+    dealer.high = false
+    player.high = false
+    log.innerHTML = ''
+
 }
 
 let dealButton = document.getElementsByClassName('deal')[0]
@@ -154,6 +197,7 @@ let dealButton = document.getElementsByClassName('deal')[0]
 let deal = function() {
     clear()
     shuffle()
+    dealButton.innerHTML = 'Redeal'
     dealCard(dealer)
     let upsideDown = dealer.seat.getElementsByClassName('card')[1]
     dealer.hidden = upsideDown.getAttribute('src')
@@ -161,6 +205,7 @@ let deal = function() {
     dealCard(player)
     dealCard(dealer)
     dealCard(player)
+    check()
 }
 
 dealButton.addEventListener('click', deal)
