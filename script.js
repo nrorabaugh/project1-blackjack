@@ -1,6 +1,9 @@
 let deck = [
+    {rank: 'Ace', suit: 'Spades', val: 11, loVal: 1, img: 'cards/AS.jpg'},
     {rank: 2, suit: 'Clubs', val: 2, img: 'cards/2C.jpg'},
+    {rank: 'Ace', suit: 'Clubs', val: 11, loVal: 1, img: 'cards/AC.jpg'},
     {rank: 3, suit: 'Clubs', val: 3, img: 'cards/3C.jpg'},
+    {rank: 'Jack', suit: 'Spades', val: 10, img: 'cards/JS.jpg'},
     {rank: 4, suit: 'Clubs', val: 4, img: 'cards/4C.jpg'},
     {rank: 5, suit: 'Clubs', val: 5, img: 'cards/5C.jpg'},
     {rank: 6, suit: 'Clubs', val: 6, img: 'cards/6C.jpg'},
@@ -11,7 +14,6 @@ let deck = [
     {rank: 'Jack', suit: 'Clubs', val: 10, img: 'cards/JC.jpg'},
     {rank: 'Queen', suit: 'Clubs', val: 10, img: 'cards/QC.jpg'},
     {rank: 'King', suit: 'Clubs', val: 10, img: 'cards/KC.jpg'},
-    {rank: 'Ace', suit: 'Clubs', val: 11, loVal: 1, img: 'cards/AC.jpg'},
     {rank: 2, suit: 'Hearts', val: 2, img: 'cards/2H.jpg'},
     {rank: 3, suit: 'Hearts', val: 3, img: 'cards/3H.jpg'},
     {rank: 4, suit: 'Hearts', val: 4, img: 'cards/4H.jpg'},
@@ -47,10 +49,9 @@ let deck = [
     {rank: 8, suit: 'Spades', val: 8, img: 'cards/8S.jpg'},
     {rank: 9, suit: 'Spades', val: 9, img: 'cards/9S.jpg'},
     {rank: 10, suit: 'Spades', val: 10, img: 'cards/10S.jpg'},
-    {rank: 'Jack', suit: 'Spades', val: 10, img: 'cards/JS.jpg'},
+    
     {rank: 'Queen', suit: 'Spades', val: 10, img: 'cards/QS.jpg'},
     {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
-    {rank: 'Ace', suit: 'Spades', val: 11, loVal: 1, img: 'cards/AS.jpg'}
 ]
 
 let dealer = {
@@ -115,9 +116,9 @@ let dealCard = function(el) {
         el.points += draw.val
     }
     if(draw.val === 11) {
-        el.aces.push(draw)
         if(el.points > 10){
             el.points += draw.loVal
+            el.aces.push(draw)
         } else {
             el.points += draw.val
         }
@@ -137,8 +138,8 @@ let dealCard = function(el) {
 
 let hit = function() {
     if(log.innerHTML !== ''){
-        log.innerHTML = 'You have to deal first!'
-        return
+    log.innerHTML = 'You have to deal first!'
+    return
     }
     dealCard(player)
     check()
@@ -207,6 +208,8 @@ let clear = function() {
     }
     player.hand = []
     dealer.hand = []
+    dealer.aces = []
+    player.aces = []
     player.points = 0
     dealer.points = 0
     points.textContent = player.points
@@ -220,7 +223,6 @@ let dealButton = document.getElementsByClassName('deal')[0]
 
 let deal = function() {
     clear()
-    shuffle()
     dealButton.innerHTML = 'Redeal'
     dealCard(player)
     dealCard(dealer)
@@ -229,6 +231,7 @@ let deal = function() {
     upsideDown.setAttribute('src', 'cards/Red_back.jpg')
     dealCard(player)
     dealCard(dealer)
+    shuffle()
     check()
 }
 
