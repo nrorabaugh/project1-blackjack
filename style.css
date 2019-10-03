@@ -74,6 +74,12 @@ h4 {
 }
 button {
     font-size: 22px;
+    background-color: brown;
+    color: goldenrod
+}
+button:hover {
+    cursor: pointer;
+    background-color: maroon
 }
 .log {
     margin: 0;
