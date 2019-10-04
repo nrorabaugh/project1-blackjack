@@ -1,9 +1,7 @@
 let deck = [
-    {rank: 'Ace', suit: 'Spades', val: 11, loVal: 1, img: 'cards/AS.jpg'},
+    
     {rank: 2, suit: 'Clubs', val: 2, img: 'cards/2C.jpg'},
-    {rank: 'Ace', suit: 'Clubs', val: 11, loVal: 1, img: 'cards/AC.jpg'},
     {rank: 3, suit: 'Clubs', val: 3, img: 'cards/3C.jpg'},
-    {rank: 'Jack', suit: 'Spades', val: 10, img: 'cards/JS.jpg'},
     {rank: 4, suit: 'Clubs', val: 4, img: 'cards/4C.jpg'},
     {rank: 5, suit: 'Clubs', val: 5, img: 'cards/5C.jpg'},
     {rank: 6, suit: 'Clubs', val: 6, img: 'cards/6C.jpg'},
@@ -14,6 +12,7 @@ let deck = [
     {rank: 'Jack', suit: 'Clubs', val: 10, img: 'cards/JC.jpg'},
     {rank: 'Queen', suit: 'Clubs', val: 10, img: 'cards/QC.jpg'},
     {rank: 'King', suit: 'Clubs', val: 10, img: 'cards/KC.jpg'},
+    {rank: 'Ace', suit: 'Clubs', val: 11, img: 'cards/AC.jpg'},
     {rank: 2, suit: 'Hearts', val: 2, img: 'cards/2H.jpg'},
     {rank: 3, suit: 'Hearts', val: 3, img: 'cards/3H.jpg'},
     {rank: 4, suit: 'Hearts', val: 4, img: 'cards/4H.jpg'},
@@ -26,7 +25,7 @@ let deck = [
     {rank: 'Jack', suit: 'Hearts', val: 10, img: 'cards/JH.jpg'},
     {rank: 'Queen', suit: 'Hearts', val: 10, img: 'cards/QH.jpg'},
     {rank: 'King', suit: 'Hearts', val: 10, img: 'cards/KH.jpg'},
-    {rank: 'Ace', suit: 'Hearts', val: 11, loVal: 1, img: 'cards/AH.jpg'},
+    {rank: 'Ace', suit: 'Hearts', val: 11, img: 'cards/AH.jpg'},
     {rank: 2, suit: 'Diamonds', val: 2, img: 'cards/2D.jpg'},
     {rank: 3, suit: 'Diamonds', val: 3, img: 'cards/3D.jpg'},
     {rank: 4, suit: 'Diamonds', val: 4, img: 'cards/4D.jpg'},
@@ -39,7 +38,7 @@ let deck = [
     {rank: 'Jack', suit: 'Diamonds', val: 10, img: 'cards/JD.jpg'},
     {rank: 'Queen', suit: 'Diamonds', val: 10, img: 'cards/QD.jpg'},
     {rank: 'King', suit: 'Diamonds', val: 10, img: 'cards/KD.jpg'},
-    {rank: 'Ace', suit: 'Diamonds', val: 11, loVal: 1, img: 'cards/AD.jpg'},
+    {rank: 'Ace', suit: 'Diamonds', val: 11, img: 'cards/AD.jpg'},
     {rank: 2, suit: 'Spades', val: 2, img: 'cards/2S.jpg'},
     {rank: 3, suit: 'Spades', val: 3, img: 'cards/3S.jpg'},
     {rank: 4, suit: 'Spades', val: 4, img: 'cards/4S.jpg'},
@@ -49,9 +48,10 @@ let deck = [
     {rank: 8, suit: 'Spades', val: 8, img: 'cards/8S.jpg'},
     {rank: 9, suit: 'Spades', val: 9, img: 'cards/9S.jpg'},
     {rank: 10, suit: 'Spades', val: 10, img: 'cards/10S.jpg'},
-    
+    {rank: 'Jack', suit: 'Spades', val: 10, img: 'cards/JS.jpg'},
     {rank: 'Queen', suit: 'Spades', val: 10, img: 'cards/QS.jpg'},
     {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
+    {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'},
 ]
 
 let dealer = {
@@ -112,16 +112,9 @@ let check = function() {
 let dealCard = function(el) {
     let draw = deck.shift()
     el.hand.push(draw)
-    if(draw.val < 11) {
-        el.points += draw.val
-    }
+    el.points += draw.val
     if(draw.val === 11) {
-        if(el.points > 10){
-            el.points += draw.loVal
-            el.aces.push(draw)
-        } else {
-            el.points += draw.val
-        }
+        el.aces.push(draw)
     }
     for(let i = 0; i < el.aces.length; i++){
         if(el.points > 21){
@@ -183,6 +176,9 @@ let dealerHit = function() {
     check()
 }
 
+// I found this function, I did not come up with this shuffle method. 
+// I didn't copy it down, either: I just looked it over and composed this later that day.
+
 let shuffle = function() {
     for(let i = 0; i < 1000; i++) {
         let card1 = Math.floor((Math.random() * deck.length))
@@ -223,6 +219,7 @@ let dealButton = document.getElementsByClassName('deal')[0]
 
 let deal = function() {
     clear()
+    shuffle()
     dealButton.innerHTML = 'Redeal'
     dealCard(player)
     dealCard(dealer)
@@ -231,15 +228,10 @@ let deal = function() {
     upsideDown.setAttribute('src', 'cards/Red_back.jpg')
     dealCard(player)
     dealCard(dealer)
-    shuffle()
     check()
 }
 
 dealButton.addEventListener('click', deal)
-
-// I found this function, I did not come up with this shuffle method. 
-// I didn't copy it down, either: I just looked it over and composed this later that day.
-
 
 let hitButton = document.getElementsByClassName('hit')[0]
 hitButton.addEventListener('click', hit)
