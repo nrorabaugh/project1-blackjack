@@ -92,6 +92,9 @@ let check = function() {
     }
     if(player.points === 21) {
         flip()
+        if(dealer.points === 21) {
+            log.innerHTML = 'Dealer blackjack trumps...</br>Dealer wins.'
+        }
         log.innerHTML = 'You win!'
         return
     }
@@ -104,6 +107,9 @@ let check = function() {
         flip()
         log.innerHTML = 'Dealer wins...'
         return
+    }
+    if(dealer.high === true && player.high === true) {
+        standoff()
     }
 }
 
@@ -135,7 +141,6 @@ let hit = function() {
     return
     }
     dealCard(player)
-    check()
     dealerHit()
 }
 
@@ -150,15 +155,10 @@ let stand = function() {
         return
     }
     player.high = true
-    if(dealer.high === true) {
-        flip()
-        standoff()
-        return
-    }
-    while(dealer.points <= 16){
+    while(dealer.high === false){
         dealerHit()
     }
-    standoff()
+    check()
 }
 
 let points = document.getElementsByClassName('points')[0]
@@ -166,9 +166,10 @@ let points = document.getElementsByClassName('points')[0]
 let dealerHit = function() {
     if(dealer.points > 16) {
         dealer.high = true
+        check()
         if(player.high === true){
             flip()
-            standoff()
+            check()
         }
         return
     }
