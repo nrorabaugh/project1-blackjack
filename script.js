@@ -113,9 +113,41 @@ let check = function() {
     }
 }
 
+let slide = function(el) {
+    let start = document.getElementsByClassName('deck')[0]
+    let card = document.createElement('img')
+    card.setAttribute('src', deck[0].img)
+    card.style.height = 150
+    let startPos = start.getBoundingClientRect()
+    let body = document.getElementsByTagName('body')[0]
+    let bodyPos = body.getBoundingClientRect()
+    card.style.top = startPos.top - bodyPos.top
+    card.style.right = (startPos.right - bodyPos.right) + 20
+    let cardPos = card.getBoundingClientRect()
+    let place = document.createElement('div')
+    place.style.height = 150
+    place.style.width = startPos.right - startPos.left - 110
+    el.seat.appendChild(place)
+    let placePos = place.getBoundingClientRect()
+    var elem = card
+    var posRight = cardPos.right
+    var posTop = cardPos.top
+    var id = setInterval(frame, 5);
+    function frame() {
+        if (posRight == placePos.right && posTop == placePos.top) {
+        clearInterval(id);
+        } else {
+        posRight += (placePos.right - startPos.right)/250
+        posTop += (placePos.top - startPos.top)/250
+        elem.style.top = posTop + 'px'
+        elem.style.right = posRight + 'px'
+        }
+    }
+}
 
 
 let dealCard = function(el) {
+    // slide(el)
     let draw = deck.shift()
     el.hand.push(draw)
     el.points += draw.val
@@ -164,6 +196,7 @@ let stand = function() {
 let points = document.getElementsByClassName('points')[0]
 
 let dealerHit = function() {
+    
     if(dealer.points > 16) {
         dealer.high = true
         check()
@@ -215,6 +248,19 @@ let clear = function() {
     log.innerHTML = ''
 
 }
+let betAmt = document.getElementsByClassName('betAmt')[0]
+let cash = document.getElementsByClassName('cash')[0]
+let cashNum = document.getElementsByClassName('cashNum')[0]
+let bet = function() {
+    if(typeof(betAmt.innerHTML) !== number){
+        log.innerHTML = "Choose a number to bet..."
+        return
+    }
+    if(betAmt > cashNum.innerHTML) {
+        log.innerHTML = "You don't have that much cash!"
+        return
+    }
+}
 
 let dealButton = document.getElementsByClassName('deal')[0]
 
@@ -231,6 +277,8 @@ let deal = function() {
     dealCard(dealer)
     check()
 }
+
+let betButton = document.getElementsByClassName('betButton')[0]
 
 dealButton.addEventListener('click', deal)
 

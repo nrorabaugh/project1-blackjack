@@ -4,6 +4,7 @@ body {
     width: 100%;
     padding: 0;
     margin: 0;
+    position: relative
 }
 h1 {
     text-align: center;
@@ -30,6 +31,12 @@ h1 {
     flex-direction: row-reverse;
 }
 h2 {
+    font-family: Helvetica;
+    color: goldenrod
+}
+.betting {
+    padding: 0 20px;
+    float: left;
     font-family: Helvetica;
     color: goldenrod
 }
@@ -88,5 +95,9 @@ button:hover {
     right: 100px;
     font-family: Helvetica;
     color: goldenrod;
-    font-size: 22px
+    font-size: 28px
+}
+.betAmt {
+    font-size: 22px;
+    width: 90px;
 }
