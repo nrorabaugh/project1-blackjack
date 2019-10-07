@@ -11,6 +11,16 @@
 <body>
     <h1>Blackjack</h1>
     <div class="gameboard">
+        <div class="welcome">
+            <h2>Welcome to Blackjack</h2>
+            <p>Welcome to the game. In case you are new, the rules are as follows: on each hand, your objective is to score as close to 21 points as possible without going over, or "busting". A score of 21 is an automatic win, called blackjack. You will be competing against the dealer; if neither of you score blackjack or bust, whoever scores higher wins. Numbered cards are scored by their number, all face cards have a value of ten, and Aces are worth either one or eleven points. As you have bought in for five hundred dollars, you may bet freely on each hand (with a minimum of 10 dollars). If the game seems to be malfunctioning, look to the bottom right for helpful hints. Good luck, shark!</p>
+            <button class="play">Play</button>
+        </div>
+        <div class="broke">
+                <h2>Sorry, you're out of chips</h2>
+                <p>Well, it looks like you bet it all and lost. A sad sight for any self-respecting card player. If you'd like to keep playing, you'll have to buy in again for another five hundred. If not, I'm afraid you'll have to leave the table.</p>
+                <button class="buyIn">Buy In</button>
+        </div>
             <div class="dealerSide">
                 <h2 class="dealerName">Dealer</h2>
                 <div class="dealerHand">
@@ -20,7 +30,8 @@
             <div class="playerSide">
                 <h2 class="playerName">Player</h2>
                     <div class="betting">
-                        <h3 class="cash">Cash: $<span class="cashNum">200</span></h3>
+                        <h3>Cash: $<span class="cash">500</span></h3>
+                        <h3 class="standingBet"><span class='bet'></span></h3>
                         <input type="text" class="betAmt"></input>
                         <button class="betButton">Bet</button>
                     </div>   
@@ -33,7 +44,7 @@
                     <button class="deal">Deal</button>
                 </div>
                 <div>
-                    <h3 class="log">Press the deal button to start!</h3>
+                    <h3 class="log">Place your bet and press</br>the deal button to start!</h3>
                 </div>
             </div>
     </div>

@@ -44,6 +44,7 @@ h2 {
     text-align: right;
     padding: 0 400px 20px 10px;
     margin: 0;
+    color: green
 }
 .playerSide {
     height: 230px;
@@ -52,6 +53,7 @@ h2 {
 }
 .playerName {
     margin: 0 0 20px 200px;
+    color: green
 }
 .playerHand {
     height: 150px;
@@ -68,7 +70,9 @@ h4 {
 }
 .card {
     height: 100%;
-    margin: 0 20px
+    margin: 0 20px;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
 }
 .deck {
     box-shadow: 4px 1px 12px 0 rgba(0, 0, 0, 0.7); 
@@ -77,7 +81,8 @@ h4 {
 .buttons {
     position: absolute;
     left: 43%;
-    bottom: 0
+    bottom: 0;
+    z-index: 1
 }
 button {
     font-size: 22px;
@@ -100,4 +105,119 @@ button:hover {
 .betAmt {
     font-size: 22px;
     width: 90px;
+}
+.welcome {
+    width: 500px;
+    background-color: rgb(0, 0, 0);
+    color: goldenrod;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    left: 400px;
+    top: 140px;
+    padding: 50px;
+    font-family: Helvetica
+}
+.welcome h2 {
+    text-align: center;
+}
+.broke {
+    width: 500px;
+    background-color: rgb(0, 0, 0);
+    color: goldenrod;
+    z-index: 1;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: space-between;
+    left: 400px;
+    top: 140px;
+    padding: 50px;
+    font-family: Helvetica
+}
+.broke h2 {
+    text-align: center;
+}
+
+@keyframes playerCard1 {
+    0% {
+        transform: translateX(618.171875px) translateY(-270px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes playerCard2 {
+    0% {
+        transform: translateX(480.03125px) translateY(-270px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes playerCard3 {
+    0% {
+        transform: translateX(341.890625px) translateY(-270px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes playerCard4 {
+    0% {
+        transform: translateX(203.75px) translateY(-270px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes playerCard5 {
+    0% {
+        transform: translateX(65.609375px) translateY(-270px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes dealerCard1 {
+    0% {
+        transform: translateX(208.140625px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes dealerCard2 {
+    0% {
+        transform: translateX(346.28125px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes dealerCard3 {
+    0% {
+        transform: translateX(484.421875px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes dealerCard4 {
+    0% {
+        transform: translateX(622.5625px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes dealerCard5 {
+    0% {
+        transform: translateX(760.703125xpx);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
