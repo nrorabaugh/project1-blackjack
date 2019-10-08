@@ -52,6 +52,11 @@ let deck = [
     {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
     {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'},
 ]
+// this forces preloaded images on page load
+for(let i=0; i < deck.length; i++) {
+    const preLoadedImage = new Image()
+    preLoadedImage.src = deck[i].img
+}
 
 let dealer = {
     name: 'dealer',
