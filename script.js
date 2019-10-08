@@ -1,13 +1,7 @@
 let deck = [
-    {rank: 'Ace', suit: 'Clubs', val: 11, img: 'cards/AC.jpg'},
-    {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
-    
     {rank: 2, suit: 'Clubs', val: 2, img: 'cards/2C.jpg'},
     {rank: 3, suit: 'Clubs', val: 3, img: 'cards/3C.jpg'},
-    {rank: 8, suit: 'Hearts', val: 8, img: 'cards/8H.jpg'},
     {rank: 4, suit: 'Clubs', val: 4, img: 'cards/4C.jpg'},
-    
-
     {rank: 5, suit: 'Clubs', val: 5, img: 'cards/5C.jpg'},
     {rank: 6, suit: 'Clubs', val: 6, img: 'cards/6C.jpg'},
     {rank: 7, suit: 'Clubs', val: 7, img: 'cards/7C.jpg'},
@@ -17,14 +11,14 @@ let deck = [
     {rank: 'Jack', suit: 'Clubs', val: 10, img: 'cards/JC.jpg'},
     {rank: 'Queen', suit: 'Clubs', val: 10, img: 'cards/QC.jpg'},
     {rank: 'King', suit: 'Clubs', val: 10, img: 'cards/KC.jpg'},
-   
+    {rank: 'Ace', suit: 'Clubs', val: 11, img: 'cards/AC.jpg'},
     {rank: 2, suit: 'Hearts', val: 2, img: 'cards/2H.jpg'},
     {rank: 3, suit: 'Hearts', val: 3, img: 'cards/3H.jpg'},
     {rank: 4, suit: 'Hearts', val: 4, img: 'cards/4H.jpg'},
     {rank: 5, suit: 'Hearts', val: 5, img: 'cards/5H.jpg'},
     {rank: 6, suit: 'Hearts', val: 6, img: 'cards/6H.jpg'},
     {rank: 7, suit: 'Hearts', val: 7, img: 'cards/7H.jpg'},
-    
+    {rank: 8, suit: 'Hearts', val: 8, img: 'cards/8H.jpg'},
     {rank: 9, suit: 'Hearts', val: 9, img: 'cards/9H.jpg'},
     {rank: 10, suit: 'Hearts', val: 10, img: 'cards/10H.jpg'},
     {rank: 'Jack', suit: 'Hearts', val: 10, img: 'cards/JH.jpg'},
@@ -55,7 +49,7 @@ let deck = [
     {rank: 10, suit: 'Spades', val: 10, img: 'cards/10S.jpg'},
     {rank: 'Jack', suit: 'Spades', val: 10, img: 'cards/JS.jpg'},
     {rank: 'Queen', suit: 'Spades', val: 10, img: 'cards/QS.jpg'},
-    
+    {rank: 'King', suit: 'Spades', val: 10, img: 'cards/KS.jpg'},
     {rank: 'Ace', suit: 'Spades', val: 11, img: 'cards/AS.jpg'},
 ]
 
@@ -155,6 +149,7 @@ let standoff = function() {
 }
 
 let check = function() {
+    console.log('check')
     if(player.points > 21) {
         flip()
         log.innerHTML = 'You busted...</br>Dealer wins.'
@@ -222,7 +217,7 @@ let hit = function() {
     dealCard(player)
     setTimeout( () => {
         dealerHit()
-    }, 325)
+    }, 420)
 }
 
 let flip = function() {
@@ -239,7 +234,14 @@ let stand = function() {
     dealerHit()
     while(dealer.points <= 16){
         dealerHit()
-}
+    }
+    // for(let i = 0; i < 5 - dealer.hand.length; i++) {
+    //     if(dealer.points <=16) {
+    //         setTimeout ( () => {
+    //             dealerHit()
+    //         }, 420)
+    //     }
+    // }
 }
 
 let points = document.getElementsByClassName('points')[0]
@@ -249,7 +251,6 @@ let dealerHit = function() {
         dealer.high = true
     }
     if(dealer.high === true && player.high === true){
-        flip()
         check()
         return
     } 
@@ -257,10 +258,11 @@ let dealerHit = function() {
         check()
         return
     } else {
-    dealCard(dealer)
-    if(dealer.points > 16) {
-        dealer.high = true
-    }  
+        dealCard(dealer)
+        console.log(dealer.points)
+        if(dealer.points > 16) {
+            dealer.high = true
+        }  
     }
     check()
 }
@@ -313,7 +315,7 @@ let deal = function() {
         return
     }
     clear()
-    shuffle()
+    //shuffle()
     dealButton.innerHTML = 'Redeal'
     playerName.style.color = 'goldenrod'
     dealerName.style.color = 'goldenrod'
@@ -334,6 +336,8 @@ let deal = function() {
     }, 900)
     setTimeout( () => {
         check()
+        console.log(dealer.points)
+        console.log(deck)
     }, 1000)
 }
 
