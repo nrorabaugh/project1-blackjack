@@ -149,7 +149,6 @@ let standoff = function() {
 }
 
 let check = function() {
-    console.log('check')
     if(player.points > 21) {
         flip()
         log.innerHTML = 'You busted...</br>Dealer wins.'
@@ -252,7 +251,6 @@ let dealerHit = function() {
         return
     } else {
         dealCard(dealer)
-        console.log(dealer.points)
         if(dealer.points > 16) {
             dealer.high = true
         }  
@@ -329,8 +327,6 @@ let deal = function() {
     }, 900)
     setTimeout( () => {
         check()
-        console.log(dealer.points)
-        console.log(deck)
     }, 1000)
 }
 
