@@ -235,13 +235,6 @@ let stand = function() {
     while(dealer.points <= 16){
         dealerHit()
     }
-    // for(let i = 0; i < 5 - dealer.hand.length; i++) {
-    //     if(dealer.points <=16) {
-    //         setTimeout ( () => {
-    //             dealerHit()
-    //         }, 420)
-    //     }
-    // }
 }
 
 let points = document.getElementsByClassName('points')[0]
@@ -315,7 +308,7 @@ let deal = function() {
         return
     }
     clear()
-    //shuffle()
+    shuffle()
     dealButton.innerHTML = 'Redeal'
     playerName.style.color = 'goldenrod'
     dealerName.style.color = 'goldenrod'

@@ -8,4 +8,4 @@ Below are links to my project wireframe, deployed project, and project board.
 
 Wireframe: https://drive.google.com/open?id=1VPzs59AVmaLTH6Uj1F0ncu-h5G7HIkA8
 Project Board: https://trello.com/b/mZ6ltU2d/blackjack
-Deployed Game: 
+Deployed Game: https://competent-joliot-7620c9.netlify.com/
