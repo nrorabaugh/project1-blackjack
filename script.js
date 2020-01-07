@@ -328,7 +328,6 @@ let deal = function() {
         return
     }
     clear()
-    console.log(deckRect.left + ', ' + deckRect.top)
     shuffle()
     dealButton.innerHTML = 'Redeal'
     playerName.style.color = 'goldenrod'
