@@ -226,7 +226,7 @@ let dealCard = function(el) {
     for(let i = 0; i < cardArr.length; i++){
         let thisCard = cardArr[i]
         let cardRect = thisCard.getBoundingClientRect()
-        console.log('Card' + i + 'Diff: ' + (deckRect.left - cardRect.left) + ', ' + (cardRect.top-deckRect.top))
+        console.log(cardArr[i].getAttribute('src') + ': ' + (deckRect.left - cardRect.left) + ', ' + (cardRect.top-deckRect.top))
     }
 }
 
