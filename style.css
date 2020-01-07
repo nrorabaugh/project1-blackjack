@@ -71,7 +71,7 @@ h4 {
 .card {
     height: 100%;
     margin: 0 20px;
-    animation-duration: 300ms;
+    animation-duration: 3000ms;
     animation-timing-function: linear;
 }
 .deck {
