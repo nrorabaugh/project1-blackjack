@@ -143,18 +143,18 @@ button:hover {
 
 @keyframes playerCard1 {
     0% {
-        transform: translateX(0) translateY(0);
+        transform: translateX(618.171875px) translateY(-270px);
     }
     100% {
-        transform: translateX(43vw) translateY(-270px);
+        transform: translateX(0) translateY(0);
     }
 }
 @keyframes playerCard2 {
     0% {
-        transform: translateX(0) translateY(0);
+        transform: translateX(480.03125px) translateY(-270px);
     }
     100% {
-        transform: translateX(33.33vw) translateY(-270px);
+        transform: translateX(0) translateY(0);
     }
 }
 @keyframes playerCard3 {
@@ -183,7 +183,7 @@ button:hover {
 }
 @keyframes dealerCard1 {
     0% {
-        transform: translateX(14.44vw);
+        transform: translateX(208.140625px);
     }
     100% {
         transform: translateX(0);
@@ -191,7 +191,7 @@ button:hover {
 }
 @keyframes dealerCard2 {
     0% {
-        transform: translateX(24.04vw);
+        transform: translateX(346.28125px);
     }
     100% {
         transform: translateX(0);
