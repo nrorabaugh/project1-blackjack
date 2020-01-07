@@ -191,7 +191,7 @@ let check = function() {
 
 let screenSize = function() {
     let body = document.getElementsByTagName('body')[0]
-    let bodyRect = body.getBoundingClientRect()
+    let bodyRect = window.getBoundingClientRect()
     console.log(bodyRect.width)
     console.log(bodyRect.height)
 }
