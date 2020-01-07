@@ -143,18 +143,18 @@ button:hover {
 
 @keyframes playerCard1 {
     0% {
-        transform: translateX(43vw) translateY(-270px);
+        transform: translateX(0) translateY(0);
     }
     100% {
-        transform: translateX(0) translateY(0);
+        transform: translateX(43vw) translateY(-270px);
     }
 }
 @keyframes playerCard2 {
     0% {
-        transform: translateX(33.33vw) translateY(-270px);
+        transform: translateX(0) translateY(0);
     }
     100% {
-        transform: translateX(0) translateY(0);
+        transform: translateX(33.33vw) translateY(-270px);
     }
 }
 @keyframes playerCard3 {
