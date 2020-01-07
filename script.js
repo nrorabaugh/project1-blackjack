@@ -220,6 +220,11 @@ let dealCard = function(el) {
     card.style.animationName = anim;
     card.style.webkitAnimationName = anim;
     el.seat.appendChild(card)
+    let deck = document.getElementsByClassName('deck')[0]
+    let deckRect = deck.getBoundingClientRect()
+    let cardRect = card.getBoundingClientRect()
+    console.log(cardRect.left + ', ' + cardRect.top)
+    console.log(deckRect.left + ', ' + deckRect.top)
 }
 
 let hit = function() {
