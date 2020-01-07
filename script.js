@@ -222,7 +222,7 @@ let dealCard = function(el) {
     el.seat.appendChild(card)
     let cardRect = card.getBoundingClientRect()
     let cardArr = document.getElementsByClassName('card')
-    console.log(cardArr[cardArr.length].getBoundingClientRect().left + ', ' + cardArr[cardArr.length].getBoundingClientRect().top)
+    console.log(cardArr[cardArr.length-1].getBoundingClientRect().left + ', ' + cardArr[cardArr.length-1].getBoundingClientRect().top)
 }
 
 let hit = function() {
