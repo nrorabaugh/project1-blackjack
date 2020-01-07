@@ -223,7 +223,8 @@ let dealCard = function(el) {
     let cardArr = document.getElementsByClassName('card')
     for(let i = 0; i < cardArr.length; i++){
         let thisCard = cardArr[i]
-        console.log(thisCard)
+        let cardRect = thisCard.getBoundingClientRect()
+        console.log(cardRect.left + ', ' + cardRect.top)
     }
 }
 
