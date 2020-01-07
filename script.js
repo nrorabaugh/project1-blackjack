@@ -223,8 +223,7 @@ let dealCard = function(el) {
     let dealDeck = document.getElementsByClassName('deck')[0]
     let deckRect = dealDeck.getBoundingClientRect()
     let cardRect = card.getBoundingClientRect()
-    console.log(cardRect.left + ', ' + cardRect.top)
-    console.log(deckRect.left + ', ' + deckRect.top)
+    console.log('leftDiff: ' + (deckRect.left-cardRect.left) + ', topDiff: ' + (cardRect.top-deckRect.top))
 }
 
 let hit = function() {
