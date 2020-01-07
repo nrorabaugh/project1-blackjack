@@ -224,7 +224,7 @@ let dealCard = function(el) {
     for(let i = 0; i < cardArr.length; i++){
         let thisCard = cardArr[i]
         let cardRect = thisCard.getBoundingClientRect()
-        console.log(cardRect.left + ', ' + cardRect.top)
+        console.log('Card' + i + ': 'cardRect.left + ', ' + cardRect.top)
     }
 }
 
