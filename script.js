@@ -221,10 +221,12 @@ let dealCard = function(el) {
     card.style.webkitAnimationName = anim;
     el.seat.appendChild(card)
     let cardArr = document.getElementsByClassName('card')
+    let dealDeck = document.getElementsByClassName('deck')[0]
+    let deckRect = dealDeck.getBoundingClientRect()
     for(let i = 0; i < cardArr.length; i++){
         let thisCard = cardArr[i]
         let cardRect = thisCard.getBoundingClientRect()
-        console.log('Card' + i + ': ' + cardRect.left + ', ' + cardRect.top)
+        console.log('Card' + i + 'Diff: ' + (deckRect.left - cardRect.left) + ', ' + (cardRect.top-deckRect.top))
     }
 }
 
@@ -326,8 +328,6 @@ let deal = function() {
         return
     }
     clear()
-    let dealDeck = document.getElementsByClassName('deck')[0]
-    let deckRect = dealDeck.getBoundingClientRect()
     console.log(deckRect.left + ', ' + deckRect.top)
     shuffle()
     dealButton.innerHTML = 'Redeal'
