@@ -143,7 +143,7 @@ button:hover {
 
 @keyframes playerCard1 {
     0% {
-        transform: translateX(67.3vw) translateY(-270px);
+        transform: translateX(67.3vw) translateY(-38.297vh);
     }
     100% {
         transform: translateX(0) translateY(0);
@@ -151,7 +151,7 @@ button:hover {
 }
 @keyframes playerCard2 {
     0% {
-        transform: translateX(57.76vw) translateY(-270px);
+        transform: translateX(57.76vw) translateY(-38.297vh);
     }
     100% {
         transform: translateX(0) translateY(0);
@@ -159,7 +159,7 @@ button:hover {
 }
 @keyframes playerCard3 {
     0% {
-        transform: translateX(48.22vw) translateY(-270px);
+        transform: translateX(48.22vw) translateY(-38.297vh);
     }
     100% {
         transform: translateX(0) translateY(0);
@@ -167,7 +167,7 @@ button:hover {
 }
 @keyframes playerCard4 {
     0% {
-        transform: translateX(38.68vw) translateY(-270px);
+        transform: translateX(38.68vw) translateY(-38.297vh);
     }
     100% {
         transform: translateX(0) translateY(0);
@@ -175,7 +175,7 @@ button:hover {
 }
 @keyframes playerCard5 {
     0% {
-        transform: translateX(29.14vw) translateY(-270px);
+        transform: translateX(29.14vw) translateY(-38.297vh);
     }
     100% {
         transform: translateX(0) translateY(0);
@@ -183,7 +183,7 @@ button:hover {
 }
 @keyframes dealerCard1 {
     0% {
-        transform: translateX(208.140625px);
+        transform: translateX(14.45vw);
     }
     100% {
         transform: translateX(0);
@@ -191,7 +191,7 @@ button:hover {
 }
 @keyframes dealerCard2 {
     0% {
-        transform: translateX(346.28125px);
+        transform: translateX(23.99vw);
     }
     100% {
         transform: translateX(0);
@@ -199,7 +199,7 @@ button:hover {
 }
 @keyframes dealerCard3 {
     0% {
-        transform: translateX(484.421875px);
+        transform: translateX(33.53vw);
     }
     100% {
         transform: translateX(0);
@@ -207,7 +207,7 @@ button:hover {
 }
 @keyframes dealerCard4 {
     0% {
-        transform: translateX(622.5625px);
+        transform: translateX(43.07vw);
     }
     100% {
         transform: translateX(0);
@@ -215,7 +215,7 @@ button:hover {
 }
 @keyframes dealerCard5 {
     0% {
-        transform: translateX(760.703125xpx);
+        transform: translateX(52.61);
     }
     100% {
         transform: translateX(0);
