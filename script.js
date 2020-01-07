@@ -220,10 +220,8 @@ let dealCard = function(el) {
     card.style.animationName = anim;
     card.style.webkitAnimationName = anim;
     el.seat.appendChild(card)
-    let dealDeck = document.getElementsByClassName('deck')[0]
-    let deckRect = dealDeck.getBoundingClientRect()
     let cardRect = card.getBoundingClientRect()
-    console.log('leftDiff: ' + (deckRect.left-cardRect.left) + ', topDiff: ' + (cardRect.top-deckRect.top))
+    console.log(cardRect.left + ', ' + cardRect.top)
 }
 
 let hit = function() {
@@ -324,6 +322,9 @@ let deal = function() {
         return
     }
     clear()
+    let dealDeck = document.getElementsByClassName('deck')[0]
+    let deckRect = dealDeck.getBoundingClientRect()
+    console.log(deckRect.left + ', ' + deckRect.top)
     shuffle()
     dealButton.innerHTML = 'Redeal'
     playerName.style.color = 'goldenrod'
