@@ -221,7 +221,7 @@ let dealCard = function(el) {
     card.style.webkitAnimationName = anim;
     el.seat.appendChild(card)
     let cardRect = card.getBoundingClientRect()
-    console.log(cardRect.left + ', ' + cardRect.top)
+    console.log(document.getElementsByClassName('card'))
 }
 
 let hit = function() {
