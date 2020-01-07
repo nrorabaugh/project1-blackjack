@@ -189,6 +189,14 @@ let check = function() {
     }
 }
 
+let screenSize = function() {
+    let body = document.getElementsByTagName('body')[0]
+    console.log('width: ' + body.style.maxWidth)
+    console.log('height: ' + body.style.maxHeight)
+}
+
+screenSize()
+
 let dealCard = function(el) {
     let draw = deck.shift()
     el.hand.push(draw)
